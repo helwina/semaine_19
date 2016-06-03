@@ -1,0 +1,22 @@
+<h1>Vue de l'article</h1>
+  <a href="/">Revenir à la liste des articles</a>
+
+  <p><%= @article.title %></p>
+  <p><%= @article.content %></p>
+
+<h4>Nouveau commentaire</h4>
+  <%= form_tag "/articles/#{@article.id}", method: "post" do %>
+    <input type="text" name="auteur" placeholder="Nom - Prénom" /><br />
+    <textarea name="content" placeholder="Commentaire ..."></textarea>
+    <input type="hidden" name="article_id" value="<%= @article.id %>" />
+    <input type="submit" value="Ajouter le commentaire" />
+  <% end %>
+
+<h4>Liste des commentaires</h4>
+  <% if !(@comments.empty?) %>
+    <% @comments.each do |comment| %>
+      <p><%= comment.content %> (par <%= comment.auteur %>)</p>
+    <% end %>
+  <% else %>
+    <p>Pas de commentaire pour le moment</p>
+  <% end %>

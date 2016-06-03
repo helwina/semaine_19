@@ -1,0 +1,6 @@
+<h1>Liste des articles</h1>
+<%= paginate @articles %>
+<% @articles.each do |article| %>
+  <p><%= article_link article %></p>
+<% end %>
+
